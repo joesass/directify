@@ -2,6 +2,16 @@
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
 # Examples:
-george_lucas = Director.create(name: 'George Lucas', year_born: 1944, hometown: "Modesto, CA")
-scifi = Genre.create(name: 'Scifi')
-star_wars = Movie.create( title: 'Star Wars', director_id: 1, genre_id: 1 )
+30.times do
+  Director.create(name: Faker::Name.name ,
+  year_born: Faker::Date.backward(40000).year,
+  hometown: Faker::Address.city)
+end
+
+15.times do
+  Genre.create(name: Faker::Hipster.word)
+end
+
+70.times do
+  Movie.create( title: Faker::Book.title, director_id: (1 + rand(30)), genre_id: 1 + (rand(15)) )
+end
